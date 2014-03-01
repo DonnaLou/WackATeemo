@@ -7,14 +7,15 @@ public class GameController : MonoBehaviour {
 	public Transform Teemo;
 	public Transform Shroom;
 	
+	
 	int shroomPosition;
 	int teemoPosition;
 	
 	List<Vector3> PositionList;
 	
+	//int maxLife = 3;	
 	
 	
-	// Use this for initialization
 	void Start () {
 		
 		Vector3 position1 = new Vector3(-3.2434f, 3.75022f, 0f);
@@ -43,7 +44,7 @@ public class GameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-		if(Input.GetMouseButtonDown(0))
+		if(HitTeemo ())
 			ChangePositions();
 		
 	}
@@ -62,10 +63,38 @@ public class GameController : MonoBehaviour {
 		Shroom.position = PositionList[shroomPosition-1];
 	}
 	
-	IEnumerator  Wait()
+	bool HitTeemo()
 	{
-		Debug.Log ("waiting");
-		yield return new WaitForSeconds(10000f);
-		
+		if(Input.GetMouseButtonDown (0))
+		{
+			Vector3 mousePos = Input.mousePosition;
+			mousePos.z = 10;
+			Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePos);
+			
+			Debug.Log (mouseWorldPosition);
+			
+			RaycastHit2D hitInfo = Physics2D.Raycast (mouseWorldPosition, Vector2.zero);		
+			
+			if(hitInfo != null && hitInfo.collider != null && hitInfo.rigidbody.gameObject.name == "Teemo")
+			{
+				Debug.Log ("hit " + hitInfo.rigidbody.gameObject.name);	
+				return true;
+			}
+			else
+				return false;
+			
+		}
+		return false;
 	}
+	
+	bool HitShroom()
+	{
+		if(Input.GetMouseButtonDown (0))
+		{
+			//if(Input.mousePosition)
+			return true;
+		}
+		return false;
+	}
+	
 }
