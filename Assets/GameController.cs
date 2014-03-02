@@ -7,17 +7,15 @@ public class GameController : MonoBehaviour {
 	public Transform Teemo;
 	public Transform Shroom;
 	
-	
 	int shroomPosition;
 	int teemoPosition;
+	int maxHealth = 3;
+	int currentHealth;
 	
 	List<Vector3> PositionList;
 	
-	//int maxLife = 3;	
-	
-	
-	void Start () {
-		
+	void Start () 
+	{
 		Vector3 position1 = new Vector3(-3.2434f, 3.75022f, 0f);
 		Vector3 position2 = new Vector3(0.17787f, 3.64654f, 0f);
 		Vector3 position3 = new Vector3(3.18452f, 3.50830f, 0f);
@@ -39,14 +37,20 @@ public class GameController : MonoBehaviour {
 			position8, 
 			position9
 		};
+		
+		currentHealth = maxHealth;
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
-		if(HitTeemo ())
-			ChangePositions();
+	void Update () 
+	{
+		if(Input.GetKey(KeyCode.Escape))
+		{
+			Application.Quit();
+		}
 		
+		if(HitTeemo () || HitShroom())
+			ChangePositions();
 	}
 	
 	void ChangePositions()
@@ -75,14 +79,11 @@ public class GameController : MonoBehaviour {
 			
 			RaycastHit2D hitInfo = Physics2D.Raycast (mouseWorldPosition, Vector2.zero);		
 			
-			if(hitInfo != null && hitInfo.collider != null && hitInfo.rigidbody.gameObject.name == "Teemo")
+			if(hitInfo != null && hitInfo.rigidbody != null && hitInfo.rigidbody.gameObject.name == "Teemo")
 			{
 				Debug.Log ("hit " + hitInfo.rigidbody.gameObject.name);	
 				return true;
 			}
-			else
-				return false;
-			
 		}
 		return false;
 	}
@@ -91,8 +92,21 @@ public class GameController : MonoBehaviour {
 	{
 		if(Input.GetMouseButtonDown (0))
 		{
-			//if(Input.mousePosition)
-			return true;
+			Vector3 mousePos = Input.mousePosition;
+			mousePos.z = 10;
+			Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePos);
+			
+			Debug.Log (mouseWorldPosition);
+			
+			RaycastHit2D hitInfo = Physics2D.Raycast (mouseWorldPosition, Vector2.zero);		
+			
+			if(hitInfo != null && hitInfo.rigidbody != null && hitInfo.rigidbody.gameObject.name == "Shroom")
+			{
+				Debug.Log ("hit " + hitInfo.rigidbody.gameObject.name);	
+				currentHealth--;
+				Debug.Log ("healthLeft= "+currentHealth);
+				return true;
+			}
 		}
 		return false;
 	}
