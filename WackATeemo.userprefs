@@ -1,16 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ScoreCounter.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\GameController.cs">
     <Files>
-      <File FileName="Assets\GameController.cs" Line="18" Column="55" />
-      <File FileName="Assets\ScoreCounter.cs" Line="23" Column="1" />
-      <File FileName="Assets\SpriteHit.cs" Line="11" Column="1" />
+      <File FileName="Assets\GameController.cs" Line="23" Column="3" />
+      <File FileName="Assets\ScoreCounter.cs" Line="20" Column="74" />
+      <File FileName="Assets\SpriteHit.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
-            <Node name="ScoreCounter.cs" selected="True" />
+            <Node name="GameController.cs" selected="True" />
           </Node>
         </State>
       </Pad>

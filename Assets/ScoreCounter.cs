@@ -17,6 +17,6 @@ public class ScoreCounter : MonoBehaviour {
 	public void OnGUI()
 	{
 		GUI.skin = ScoreSkin;
-		GUI.Label(new Rect(Screen.width/2 - 100, 40, 250, 100), "CurrentHealth = " + currentHealth);
+		GUI.Label(new Rect(Screen.width/2 - 300, 10, 250, 100), "Current Health = " + currentHealth);
 	}
 }
